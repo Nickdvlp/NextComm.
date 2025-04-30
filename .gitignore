@@ -1,0 +1,13 @@
+logs
+*.logs
+
+
+Client/node_modules
+server/node_modules
+
+
+Client/.env
+server/.env
+
+.qodo
+.DS_Store
