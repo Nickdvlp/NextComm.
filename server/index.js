@@ -21,6 +21,14 @@ dotenv.config({ path: "./config.env" });
 connectDb();
 
 app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://next-comm-frontend.vercel.app"
+  );
+
+  next();
+});
 app.use(
   cors({
     origin: frontendUrl, // Allow requests only from your frontend
