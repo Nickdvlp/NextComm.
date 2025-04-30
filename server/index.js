@@ -22,6 +22,9 @@ connectDb();
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("Welcome to nextComm. Api!");
+});
 app.use("/api/users", UserRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
