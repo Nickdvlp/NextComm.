@@ -15,11 +15,19 @@ import orderAdminRoutes from "./Routes/orderAdminRoutes.js";
 
 // Setup
 const app = express();
+
+const frontendUrl = "https://next-comm-frontend.vercel.app/";
 dotenv.config({ path: "./config.env" });
 connectDb();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: frontendUrl, // Allow requests only from your frontend
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allow necessary HTTP methods
+    credentials: true, // If you're using cookies or authentication tokens
+  })
+);
 
 // Routes
 app.get("/", (req, res) => {
