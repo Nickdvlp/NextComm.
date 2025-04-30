@@ -13,15 +13,15 @@ import adminRoutes from "./Routes/adminRoutes.js";
 import productAdminRoutes from "./Routes/productAdminRoutes.js";
 import orderAdminRoutes from "./Routes/orderAdminRoutes.js";
 
+// Setup
 const app = express();
 dotenv.config({ path: "./config.env" });
-const PORT = process.env.PORT;
-
 connectDb();
 
 app.use(express.json());
 app.use(cors());
 
+// Routes
 app.get("/", (req, res) => {
   res.send("Welcome to nextComm. Api!");
 });
@@ -36,6 +36,5 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/admin/products", productAdminRoutes);
 app.use("/api/admin/orders", orderAdminRoutes);
 
-app.listen(PORT, () => {
-  console.log(`server is running on ${PORT}`);
-});
+// ✅ Export app as a handler for Vercel
+export default app;
