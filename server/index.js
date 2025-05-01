@@ -15,25 +15,17 @@ import orderAdminRoutes from "./Routes/orderAdminRoutes.js";
 
 // Setup
 const app = express();
+const frontendUrl = "https://next-comm-frontend.vercel.app";
 
-const frontendUrl = "https://next-comm-frontend.vercel.app/";
 dotenv.config({ path: "./config.env" });
 connectDb();
 
 app.use(express.json());
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://next-comm-frontend.vercel.app/"
-  );
-
-  next();
-});
 app.use(
   cors({
-    origin: frontendUrl, // Allow requests only from your frontend
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow necessary HTTP methods
-    credentials: true, // If you're using cookies or authentication tokens
+    origin: frontendUrl,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 
@@ -42,7 +34,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to nextComm. Api!");
 });
 app.use("/api/users", UserRoutes);
-app.use("api/products", productRoutes);
+app.use("/api/products", productRoutes); // ✅ Fixed here
 app.use("/api/cart", cartRoutes);
 app.use("/api/checkout", checkoutRoutes);
 app.use("/api/order", orderRoutes);
