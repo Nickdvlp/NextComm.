@@ -8,10 +8,12 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import CartDrawer from "../layout/CartDrawer";
 import { IoMdClose } from "react-icons/io";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [navDrawerOpen, setNavDrawerOpen] = useState(false);
+  const { user } = useSelector((state) => state.auth);
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   };
@@ -57,12 +59,15 @@ const NavBar = () => {
         </div>
         {/* Right Icons */}
         <div className="flex items-center space-x-4">
-          <Link
-            to="/admin"
-            className="block text-sm bg-black tracking-wider text-white px-2 py-1 rounded-lg"
-          >
-            Admin
-          </Link>
+          {user && user.role === "admin" && (
+            <Link
+              to="/admin"
+              className="block text-sm bg-black tracking-wider text-white px-2 py-1 rounded-lg"
+            >
+              Admin
+            </Link>
+          )}
+
           <Link to="/profile" className="hover:text-black">
             <HiOutlineUser className="w-6 h-6" />
           </Link>
