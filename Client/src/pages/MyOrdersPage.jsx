@@ -42,7 +42,7 @@ const MyOrdersPage = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.length > 0 ? (
+            {orders ? (
               orders.map((order, i) => (
                 <tr
                   key={i}
