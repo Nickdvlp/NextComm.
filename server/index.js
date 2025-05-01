@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to nextComm. Api!");
 });
 app.use("/api/users", UserRoutes);
-app.use("/api/products", productRoutes);
+app.use("api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/checkout", checkoutRoutes);
 app.use("/api/order", orderRoutes);
