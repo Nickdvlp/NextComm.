@@ -19,7 +19,7 @@ import EditProduct from "./components/admin/EditProduct";
 import OrderManagement from "./components/admin/OrderManagement";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import ProtectedRoutes from "./components/common/protectedRoutes";
+import ProtectedRoutes from "./components/common/ProtectedRoutes";
 function App() {
   return (
     <Provider store={store}>
