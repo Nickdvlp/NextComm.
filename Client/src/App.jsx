@@ -17,10 +17,11 @@ import UserManagement from "./components/admin/UserManagement";
 import ProductManagement from "./components/admin/ProductManagement";
 import EditProduct from "./components/admin/EditProduct";
 import OrderManagement from "./components/admin/OrderManagement";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "./redux/store";
-import ProtectedRoutes from "./components/common/ProtectedRoutes";
+
 function App() {
+  const { user } = useSelector((state) => state.auth);
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -46,9 +47,11 @@ function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRoutes role="admin">
+              user?.role === "admin" ? (
                 <AdminLayout />
-              </ProtectedRoutes>
+              ) : (
+                <Navigate to="/login" replace />
+              )
             }
           >
             <Route index element={<AdminHomePage />} />
